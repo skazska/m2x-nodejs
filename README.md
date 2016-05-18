@@ -43,20 +43,31 @@ m2x.status(function(status) {
 });
 ```
 
-An M2X object provides methods for communicating with the remote API. Methods are organized under the following modules: `keys`, `devices`, `charts` and `distributions`.
+An M2X object provides methods for communicating with the remote API. Methods are organized under the following modules: `collection`, `commands`, `devices`, `distributions`, `jobs` and `keys`.
 
-- [Distributions](src/distributions.js)
+- [Collections](lib/collections.js)
   ```javascript
-  m2x.distributions.view("<DISTRIBUTION-ID>", function(response) {
+  m2x.collections.view("<DISTRIBUTION-ID>", function(response) {
       console.log(response.json);
   });
 
-  m2x.distributions.list(function(response) {
+  m2x.collections.list(function(response) {
       console.log(response.json);
   });
   ```
 
-- [Devices](src/devices.js)
+- [Commands](lib/commands.js)
+  ```javascript
+  m2x.commands.view("<DISTRIBUTION-ID>", function(response) {
+      console.log(response.json);
+  });
+
+  m2x.commands.list(function(response) {
+      console.log(response.json);
+  });
+  ```
+
+- [Devices](lib/devices.js)
   ```javascript
   m2x.devices.view("<DEVICE-ID>", function(response) {
       console.log(response.json);
@@ -67,14 +78,25 @@ An M2X object provides methods for communicating with the remote API. Methods ar
   });
   ```
 
-- [Jobs](src/jobs.js)
+- [Distributions](lib/distributions.js)
+  ```javascript
+  m2x.distributions.view("<DISTRIBUTION-ID>", function(response) {
+      console.log(response.json);
+  });
+
+  m2x.distributions.list(function(response) {
+      console.log(response.json);
+  });
+  ```
+
+- [Jobs](lib/jobs.js)
   ```javascript
   m2x.jobs.view("<JOB-ID>", function(response) {
       console.log(response.json);
   });
   ```
 
-- [Keys](src/keys.js)
+- [Keys](lib/keys.js)
   ```javascript
   m2x.keys.view("<KEY-TOKEN>", function(response) {
       console.log(response.json);
@@ -128,17 +150,34 @@ m2xClient.devices.list(function(response) {
             console.log(device);
         });
     } else {
-        console.log(response.error());
+        console.log(JSON.stringify(response.error()));
     }
 });
 ```
 
 ## Example usage ##
 
-You can find the examples in the [`examples`](examples) directory.
+You can find additional examples in the [`examples`](examples) directory. Instructions for each example can be found within the comments of the example file.
 
-To use them, you should set up your key in [`examples/config.js`](examples/config.js), then execute like: `$ node examples/print-devices.js`.
+All examples require the `m2x-nodejs` library.
 
+If you will be running the examples from within the `examples` directory, you will need to install the library dependencies within the root directory of the `m2x-nodejs` folder:
+
+```
+npm install
+```
+
+Or, if you move the example file(s) out of the `examples` directory you will need to modify the  `m2x-nodejs` require line and install the `m2x-nodejs` library in the root directory where the example file is stored:
+
+Change require line as follows:
+```
+var M2X = require("m2x");
+```
+
+Install `m2x-nodejs` package using npm:
+```
+npm install m2x
+```
 
 ## Versioning
 
